@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "26c5397e-2163-4643-ae23-13c5eb581e25",
+		"_postman_id": "6da93148-30e0-477a-ab5c-fe7e867f44a6",
 		"name": "LendingPad-SampleProject",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "30292534"
+		"_exporter_id": "19411825"
 	},
 	"item": [
 		{
@@ -15,12 +15,12 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:49834/users/clear",
+							"raw": "http://localhost:5050/users/clear",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
-							"port": "49834",
+							"port": "5050",
 							"path": [
 								"users",
 								"clear"
@@ -44,12 +44,12 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:49834/users/1422740e-6426-4c46-8445-3f5274a62424/create",
+							"raw": "http://localhost:5050/users/1422740e-6426-4c46-8445-3f5274a62424/create",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
-							"port": "49834",
+							"port": "5050",
 							"path": [
 								"users",
 								"1422740e-6426-4c46-8445-3f5274a62424",
@@ -74,12 +74,12 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:49834/users/9422740e-6426-4c46-8445-3f5274a62424/create",
+							"raw": "http://localhost:5050/users/9422740e-6426-4c46-8445-3f5274a62424/create",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
-							"port": "49834",
+							"port": "5050",
 							"path": [
 								"users",
 								"9422740e-6426-4c46-8445-3f5274a62424",
@@ -104,12 +104,12 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:49834/users/8722740e-6426-4c46-8445-3f5274a62424/create",
+							"raw": "http://localhost:5050/users/8722740e-6426-4c46-8445-3f5274a62424/create",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
-							"port": "49834",
+							"port": "5050",
 							"path": [
 								"users",
 								"8722740e-6426-4c46-8445-3f5274a62424",
@@ -139,12 +139,12 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:49834/users/1422740e-6426-4c46-8445-3f5274a62424/create",
+							"raw": "http://localhost:5050/users/1422740e-6426-4c46-8445-3f5274a62424/create",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
-							"port": "49834",
+							"port": "5050",
 							"path": [
 								"users",
 								"1422740e-6426-4c46-8445-3f5274a62424",
@@ -229,12 +229,12 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:49834/users/9422740e-6426-4c46-8445-3f5274a62424/update",
+							"raw": "http://localhost:5050/users/9422740e-6426-4c46-8445-3f5274a62424/update",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
-							"port": "49834",
+							"port": "5050",
 							"path": [
 								"users",
 								"9422740e-6426-4c46-8445-3f5274a62424",
@@ -250,12 +250,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:49834/users/list/tag?tag=C",
+							"raw": "http://localhost:5050/users/list/tag?tag=C",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
-							"port": "49834",
+							"port": "5050",
 							"path": [
 								"users",
 								"list",
@@ -278,11 +278,279 @@
 			"item": [
 				{
 					"name": "Products",
-					"item": []
+					"item": [
+						{
+							"name": "Create",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"Name\" : \"Cricket Bat\",\r\n    \"Price\" : 187.50\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5050/products/create",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5050",
+									"path": [
+										"products",
+										"create"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GetAll",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5050/products/getAll",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5050",
+									"path": [
+										"products",
+										"getAll"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GetById",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:5050/products/356a4268-30d7-4bb4-a16f-bbb21fd2d9b9/getById",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5050",
+									"path": [
+										"products",
+										"356a4268-30d7-4bb4-a16f-bbb21fd2d9b9",
+										"getById"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"Name\" : \"Cricket Ball\",\r\n    \"Price\" : 98.50\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5050/products/356a4268-30d7-4bb4-a16f-bbb21fd2d9b9/update",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5050",
+									"path": [
+										"products",
+										"356a4268-30d7-4bb4-a16f-bbb21fd2d9b9",
+										"update"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:5050/products/356a4268-30d7-4bb4-a16f-bbb21fd2d9b9/delete",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5050",
+									"path": [
+										"products",
+										"356a4268-30d7-4bb4-a16f-bbb21fd2d9b9",
+										"delete"
+									]
+								}
+							},
+							"response": []
+						}
+					]
 				},
 				{
 					"name": "Orders",
-					"item": []
+					"item": [
+						{
+							"name": "Create",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"ProductId\" : \"78687-78712-68793\",\r\n    \"Quantity\" : 4\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5050/orders/create",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5050",
+									"path": [
+										"orders",
+										"create"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GetAll",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5050/orders/getAll",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5050",
+									"path": [
+										"orders",
+										"getAll"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GetById",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:5050/orders/9433d85c-41e1-4378-8c49-b682339e468f/getById",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5050",
+									"path": [
+										"orders",
+										"9433d85c-41e1-4378-8c49-b682339e468f",
+										"getById"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"ProductId\" : \"78687-78712-68793\",\r\n    \"Quantity\" : 499,\r\n    \"OrderDate\" : \"04/29/2025\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5050/orders/9433d85c-41e1-4378-8c49-b682339e468f/update",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5050",
+									"path": [
+										"orders",
+										"9433d85c-41e1-4378-8c49-b682339e468f",
+										"update"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:5050/orders/9433d85c-41e1-4378-8c49-b682339e468f/delete",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5050",
+									"path": [
+										"orders",
+										"9433d85c-41e1-4378-8c49-b682339e468f",
+										"delete"
+									]
+								}
+							},
+							"response": []
+						}
+					]
 				}
 			]
 		}

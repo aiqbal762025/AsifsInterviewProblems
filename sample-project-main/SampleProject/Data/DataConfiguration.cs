@@ -1,11 +1,13 @@
 ﻿using System.Reflection;
 using BusinessEntities;
 using Common;
-using Raven.Client;
-using Raven.Client.Document;
-using Raven.Client.Indexes;
-using Raven.Imports.Newtonsoft.Json;
+using Raven.Client.Documents;
+using Raven.Client.Documents.Conventions;
+using Raven.Client.Documents.Indexes;
 using SimpleInjector;
+using Raven.Client.ServerWide.Operations;
+using Raven.Client.ServerWide;
+using System;
 
 namespace Data
 {
@@ -24,37 +26,48 @@ namespace Data
             container.RegisterSingleton(() => InitializeDocumentStore(assembly, createIndexes));
 
             container.Register(() =>
-                               {
-                                   var session = container.GetInstance<IDocumentStore>().OpenSession();
-                                   session.Advanced.MaxNumberOfRequestsPerSession = 5000;
-                                   return session;
-                               }, lifestyle);
+            {
+                var session = container.GetInstance<IDocumentStore>().OpenSession();
+                session.Advanced.MaxNumberOfRequestsPerSession = 5000;
+                return session;
+            }, lifestyle);
         }
 
         private static IDocumentStore InitializeDocumentStore(Assembly assembly, bool createIndexes)
         {
             var documentStore = new DocumentStore
-                                {
-                                    Url = "http://localhost:8080/",
-                                    DefaultDatabase = "SampleProject",
-                                    Conventions =
-                                    {
-                                        DefaultUseOptimisticConcurrency = true,
-                                        DocumentKeyGenerator = (dbname, commands, entity) => "",
-                                        SaveEnumsAsIntegers = true,
-                                        CustomizeJsonSerializer = serializer =>
-                                                                  {
-                                                                      serializer.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
-                                                                      serializer.DateTimeZoneHandling = DateTimeZoneHandling.Utc;
-                                                                      serializer.DefaultValueHandling = DefaultValueHandling.Ignore;
-                                                                      serializer.DateFormatHandling = DateFormatHandling.IsoDateFormat;
-                                                                      serializer.NullValueHandling = NullValueHandling.Include;
-                                                                  },
-                                    }
-                                };
+            {
+                Urls = new[] { "http://localhost:443/" },  // URL to your RavenDB server
+                Database = "SampleProject",               // Your database name
+                Conventions = new DocumentConventions
+                {
+                    // Enable optimistic concurrency
+                    UseOptimisticConcurrency = true,
 
+                    // Save Enums as integers (instead of strings)
+                    SaveEnumsAsIntegers = true
+                }
+            };
+
+            // Set up the OnBeforeStore event to modify the ID
+            //documentStore.OnBeforeStore += (sender, args) =>
+            //{
+            //    // Ensure the entity is of type User
+            //    if (args.Entity is User user)
+            //    {
+            //        // If the user entity doesn't already have an ID, set one
+            //        if (string.IsNullOrEmpty(user.Id.ToString()))
+            //        {
+            //            // Set a custom ID for the User entity
+            //            user.Id = "users/" + Guid.NewGuid().ToString();  // For example: users/<guid>
+            //        }
+            //    }
+            //};
+
+            // Initialize the document store
             documentStore.Initialize();
 
+            // Optionally create indexes if required
             if (createIndexes)
             {
                 IndexCreation.CreateIndexes(assembly, documentStore);
@@ -62,5 +75,6 @@ namespace Data
 
             return documentStore;
         }
+
     }
 }
